@@ -1,0 +1,15 @@
+path: F:\ML\DS
+train: images\train
+val: images\val
+
+names:
+  0: Airplane
+  1: Big ship
+  2: Bus
+  3: Car
+  4: Helicopter
+  5: Medium ship
+  6: Small ship
+  7: Specialised machinery
+  8: Train
+  9: Truck
