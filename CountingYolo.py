@@ -87,7 +87,7 @@ class DataOutputer:
 
 #Сделать поле result
 #if results == None: count else: just output
-#выиграю время на отсутствии песечёта для той же пикчи, но возмодны баги
+#выиграю время на отсутствии пересчёта для той же пикчи, но возмодны баги
 class Picture_Processor:
     picture = None
     data_outputer = DataOutputer(JsonOutputer())
@@ -119,50 +119,14 @@ class Picture_Processor:
             self.data_outputer.output_data(classes_nums, self.picture)
         
         else:
-            if (self.data_outputer == ConsoleOutputer):
+            if (type(self.data_outputer.strategy).__name__ == "ConsoleOutputer"):
                 print("Console outputer does not have file output!")
                 print("Please, change the output format")
             else:
                 self.data_outputer.output_data_filename(classes_nums, filename)
 
-
-"""def Process_Picture(pathname):
-    global model
-    results = model.track(pathname, device = 0)
-    classes_nums = Counter.count(results)
-
-    outputer = DataOutputer(ConsoleOutputer())
-    outputer.output_data_filename(classes_nums, pathname, "Console_test.txt")
-
-    outputer.set_strategy(JsonOutputer())
-    outputer.output_data(classes_nums, pathname)
-    outputer.output_data_filename(classes_nums, pathname, "Json_test.json")
-    
-    
-    outputer.set_strategy(TxtOutputer())
-    outputer.output_data(classes_nums, pathname)
-    outputer.output_data_filename(classes_nums, pathname, "Txt_test.txt")
-"""    
-
 #Tests
 Processor = Picture_Processor("Pic.jpg")
+Processor.console_mode()
 Processor.process_picture()
-
-Processor.txt_mode()
-Processor.process_picture()
-Processor.process_picture("Txt.txt")
-
-Processor.set_picture("Loki.jpg")
-Processor.json_mode()
-Processor.process_picture()
-
-Processor.set_picture("Kot.jpg")
-Processor.process_picture("Kotik.json")
-
-
-
-
-
-
-#Доделать вывод в json через dict
-#Доделать консольный вывод
+Processor.process_picture("Console.txt")
