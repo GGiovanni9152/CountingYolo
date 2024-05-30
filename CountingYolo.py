@@ -2,7 +2,8 @@ import json
 import os
 from ultralytics import YOLO
 
-model = YOLO('yolov8n.pt')
+#model = YOLO('yolov8x.pt')
+model = YOLO('best.pt')
 classes = model.names
 
 class Counter:
@@ -85,9 +86,7 @@ class DataOutputer:
     def output_data_filename(self, data, filename):
         self.strategy.output_data_filename(data, filename)
 
-#Сделать поле result
-#if results == None: count else: just output
-#выиграю время на отсутствии пересчёта для той же пикчи, но возмодны баги
+
 class Picture_Processor:
     picture = None
     data_outputer = DataOutputer(JsonOutputer())
@@ -126,7 +125,9 @@ class Picture_Processor:
                 self.data_outputer.output_data_filename(classes_nums, filename)
 
 #Tests
-Processor = Picture_Processor("Pic.jpg")
+Processor = Picture_Processor("Air.jpg")
+Processor.process_picture()
+Processor.txt_mode()
+Processor.process_picture()
 Processor.console_mode()
 Processor.process_picture()
-Processor.process_picture("Console.txt")
